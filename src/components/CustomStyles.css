@@ -1,0 +1,8 @@
+/* CustomStyles.css or in a <style> tag within your component file */
+.card-body-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* This ensures that the button aligns to the bottom */
+    height: 100%; /* Use the full height to allow "justify-content" to work */
+  }
+  

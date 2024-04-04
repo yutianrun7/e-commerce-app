@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ExampleOffcanvas from "./ExampleOffcanvas";
 
 const Header: React.FC = () => {
   return (
@@ -22,13 +23,7 @@ const Header: React.FC = () => {
           <span>React</span>
         </Link>
       </h1>
-      <a
-        href="https://github.com/twbs/examples/tree/main/react-nextjs/"
-        target="_blank"
-        rel="noopener"
-      >
-        View on GitHub
-      </a>
+      <ExampleOffcanvas className="me-3" />
     </header>
   );
 };
