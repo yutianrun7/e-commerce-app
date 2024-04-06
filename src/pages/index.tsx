@@ -3,9 +3,8 @@ import Container from "react-bootstrap/Container";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ItemList from "@/components/ItemList";
-import SearchBar from "@/components/SearchBar";
-import { ShoppingCartProvider } from '@/components/ShoppingCartContext';
-import React, { useState } from 'react';
+import { useShoppingCart } from "@/contexts/ShoppingCartContext";
+import React, { useState, useEffect } from 'react';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 
 
@@ -17,11 +16,20 @@ export async function getStaticProps() {
 }
 
 export default function Home({ products }) {
+  // set up states for search bar and shopping cart
   const [searchQuery, setSearchQuery] = useState('');
   const [items, setItems] = useState(products);
+  const { initializeCart } = useShoppingCart();
+  
+  // initialize the shopping cart at server side
+  useEffect(() => {
+    const id = 1; // for demo purpose
+    initializeCart({ id });
+  }, []);
 
-  const handleInputChange = (event) => {
-    setSearchQuery(event.target.value);
+  // search bar functions
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -32,7 +40,7 @@ export default function Home({ products }) {
   };
 
   return (
-    <ShoppingCartProvider>
+    <>
       <Head>
         <title>E-Commerce</title>
         <meta name="description" content="This is a tech case study created by Tony Yu, UCLA" />
@@ -43,6 +51,7 @@ export default function Home({ products }) {
       <Container as="main" className="py-4 px-3 mx-auto">
         <Header />
 
+        {/* Search Bar */}
         <Form onSubmit={handleSubmit}>
           <Row className="align-items-center">
             <Col xs="auto">
@@ -66,6 +75,6 @@ export default function Home({ products }) {
 
         <Footer />
       </Container>
-    </ShoppingCartProvider>
+    </>
   );
 }

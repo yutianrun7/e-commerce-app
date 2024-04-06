@@ -16,6 +16,8 @@ const Header: React.FC = () => {
           <h1>E-Commerce</h1>
         </Link>
       </h1>
+
+      {/* The shopping cart component */}
       <Cart className="me-3" />
     </header>
   );
